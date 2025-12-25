@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no">
+  <title>Tặng em ❤️</title>
+  <link rel="stylesheet" href="css/jquery.fullPage.css">
+  <link rel="stylesheet" href="css/memories.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zeyada&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="music-banner" class="music-banner loop">
+    <div class="content">
+      <h2> Hoàng Anh ❤</h2>
+      <!-- <p>Bé nhớ nhập đúng thông tin để vào nhé...</p> -->
+      <button class="btnn" onclick="playMusic()" id="playButton">
+        <!-- <span class="icon">▶️</span> -->
+        <span class="text">Em nhấn vào đây ❤</span>
+      </button>
+    </div>
+  </div>
+  <!-- <audio id="myAudio" src="./music/dungvetrnha.mp3"></audio> -->
+  <audio id="myAudio" class="music" controls src="./music/nangAmXaDan.mp3#t=9,500" type="audio/mpeg">
+    <script>
+      function playMusic() {
+        const audio = document.getElementById('myAudio');
+        const banner = document.getElementById('music-banner');
+
+        audio.play();
+        // Thêm hiệu ứng fade out khi ẩn banner
+        banner.style.opacity = '0';
+        banner.style.transition = 'opacity 0.5s ease-out';
+
+        setTimeout(() => {
+          banner.style.display = 'none';
+        }, 500);
+      }
+    </script>
+    <style>
+      .music-banner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .content {
+        text-align: center;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .content h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+
+      .content p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        color: #ccc;
+      }
+
+      .btnn {
+        padding: 15px 40px;
+        font-size: 1.2em;
+        background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .btnn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+      }
+
+      .icon {
+        font-size: 1.2em;
+      }
+
+      /* Animation cho nút */
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(1.05);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .btnns {
+        animation: pulse 2s infinite;
+      }
+    </style>
+    <style>
+      * {
+        font-family: "Montserrat", sans-serif !important;
+        font-optical-sizing: auto;
+        font-style: normal;
+      }
+    </style>
+
+
+  </audio>
+  <!-- 背景音乐 -->
+  <div style="display:none">
+    <!-- 网易云外链 -->
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86
+      src="https://music.163.com/outchain/player?type=2&id=480353&auto=1&height=66"></iframe>
+  </div>
+  <div class="bgcolor">
+    <div style="z-index:100;" id="dowebok">
+      <!--第一屏-->
+      <div class="section">
+        <div class="ly-box01">
+          <div class="ly-txt01">
+            <span class="ly-stxt01">Hoàng Anh Sun Profile ❤</span>
+            <p class="ly-stxt02">Đây là</p>
+            <p class="ly-stxt03">hành trình của em</p>
+            <p class="ly-stxt04">Từ nhỏ đến lớn</p>
+            <p class="ly-stxt05">Đầy sóng gió nhưng đẹp 😚</p>
+          </div>
+          <div class="ly-txt02">
+            <p class="ly-stxt06">Cùng xem</p>
+            <p class="ly-stxt07">profile của em nhé ❤</p>
+
+          </div>
+        </div>
+      </div>
+
+      <!--第二屏 - Mẫu giáo-->
+
+      <div class="section">
+        <div class="timeline"></div>
+        <div class="timepoint11"></div>
+        <div class="ly-box11">
+          <div class="ly-txt11">
+            Mẫu giáo ❤
+          </div>
+          <div class="ly-txt12">
+            Thời kỳ đầu đời đầy sóng gió
+          </div>
+          <div class="ly-imgbox11">
+            <img class="ly-img11" src="./img/n14.jpg" style="background-size: contain; object-fit: contain;">
+          </div>
+        </div>
+        <div class="ly-triangle11"></div>
+
+        <div class="ly-box12">
+          <div class="ly-txt13">
+            Kỷ niệm Mẫu giáo ❤
+          </div>
+          <div class="ly-txt14">
+            <p>Lớp 4 tuổi: Bắt sâu dọa bạn khóc, bướng cỡ cô bảo không được phải mặc kệ</p>
+            <p>Lớp 5 tuổi: Dẫn các bạn trốn ngủ trưa xuống bếp chơi xong bị nhốt bên trong. Mấy đứa đá gãy bản lề cửa gỗ
+              phòng bếp</p>
+            <p>Tuy nhiên có nhiều đóng góp văn nghệ, chăm chỉ đi học nên tuần nào cũng có phiếu bé ngoan ❤</p>
+            <p>Ghê hông ghê hông.Quá trời nghịch rồi hahahaha</p>
+
+          </div>
+        </div>
+        <div class="ly-triangle12"></div>
+      </div>
+
+      <!--第三屏 - Tiểu học-->
+
+      <div class="section">
+        <div class="timeline"></div>
+        <div class="timepoint21"></div>
+        <div class="ly-box21">
+          <div class="ly-txt21">
+            Tiểu học ❤
+          </div>
+          <div class="ly-txt22">
+            <p>Không có ảnh</p>
+            <p>Nhưng đầy kỷ niệm</p>
+
+          </div>
+          <!-- <div class="ly-imgbox21">
+            <img class="ly-img21" src="./img/n16.jpg" style="background-size: contain; object-fit: cover;">
+          </div> -->
+        </div>
+        <div class="ly-triangle21"></div>
+
+        <div class="ly-box22">
+          <div class="ly-txt23">
+            Kỷ niệm Tiểu học ❤
+          </div>
+          <div class="ly-txt24">
+            <p>Lớp 1: Nhuộm tóc vàng, trèo cây ngã gãy tay</p>
+            <p>Lớp 2: Ra chơi đi ra khỏi trường mua kẹo, vào lớp muộn bị phạt cả lũ</p>
+          </div>
+          <!-- <div class="ly-imgbox22">
+            <img class="ly-img22" src="./img/n8.jpg" style="background-size: contain; object-fit: contain;">
+          </div> -->
+        </div>
+        <div class="ly-triangle22"></div>
+
+        <div class="ly-box23">
+          <div class="ly-txt25">
+            Lớp 4 đặc biệt ❤
+          </div>
+          <div class="ly-txt26">
+            <p>Đánh con trai hiệu trưởng vì làm đổ xe Hoàng Anh Sun nhưng không dựng lên</p>
+            <p>Kết quả: Đánh con nhà người ta rồi ném xe đạp nó xuống ao cạnh cổng trường</p>
+            <p>Cấp 1 đầy sóng gió :333</p>
+          </div>
+          <!-- <div class="ly-imgbox23">
+            <img class="ly-img23" src="./img/n4.jpg" style="background-size: contain; object-fit: contain;">
+          </div> -->
+        </div>
+        <div class="ly-triangle23"></div>
+      </div>
+
+      <!--第四屏 - Trung học cơ sở-->
+
+      <div class="section">
+        <div class="timeline"></div>
+        <div class="timepoint31"></div>
+        <div class="ly-box31">
+          <div class="ly-txt31">
+            Trung học cơ sở ❤
+          </div>
+          <div class="ly-txt32">
+            <p>Lớp 6: Bênh bạn nên bị thằng lớp bên cạnh đánh</p>
+            <p>Được các bạn nam giúp xong các bạn nam đánh bạn kia rồi cả lớp đi viết bản kiểm điểm</p>
+          </div>
+          <!-- <div class="ly-imgbox31">
+            <img class="ly-img31" src="./img/n7.jpg" style="background-size: contain; object-fit: contain;">
+          </div> -->
+        </div>
+        <div class="ly-triangle31"></div>
+
+        <div class="ly-box32">
+          <div class="ly-txt33">
+            THCS tiếp ❤
+          </div>
+          <div class="ly-txt34">
+            <p>Lớp 7: Bắt đầu luyện olympic văn</p>
+            <p>Lớp 8: Chơi bóng rổ bị thằng khối trên chơi bẩn, đẩy ngã rách đầu gối, xong đánh nhau...to be continue
+              (ko thèm viết đoạn này)</p>
+            <p>Lớp 9: Bắt đầu cãi mẹ cãi cha để làm điều mình thích</p>
+            <p>Trung học cũng sóng gió nhưng đẹp ❤</p>
+          </div>
+          <!-- <div class="ly-imgbox31">
+            <img class="ly-img31" src="./img/n7.jpg" style="background-size: contain; object-fit: contain;">
+          </div> -->
+        </div>
+        <div class="ly-triangle32"></div>
+      </div>
+
+      <!--第五屏 - Trung học phổ thông-->
+      <div class="section">
+        <div class="timeline"></div>
+        <div class="timepoint21"></div>
+        <div class="ly-box52">
+          <div class="ly-txt21">
+            Trung học phổ thông ❤
+          </div>
+          <div class="ly-txt22">
+            <p>Lớp 10: Đã var nhau, 1 thằng vs 1 con. Nhưng vì học lớp chọn nên k ai dám làm gì, sau đó có 1 đứa bạn
+              thân :333</p>
+            <p>Lớp 11: Gđ lẫn tình cảm đều có biến cố => cắt tomboy + lao vào học = nhập viện 2 ngày</p>
+            <p>Lớp 12: Làm lớp trường gương mẫu nhưng không nghiêm túc</p>
+            <p>THPT nhạt nhẽo nhưng có bạn thân ❤</p>
+          </div>
+          <div class="ly-imgbox21">
+            <img class="ly-img21"
+              src="https://scontent.fhan2-3.fna.fbcdn.net/v/t1.6435-9/107860071_839250696828485_5971574311810870155_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=u7_wfCsI5aYQ7kNvwF4bwqw&_nc_oc=AdnI9KgnGWmvr_lNA67yGDJom_XWQLbVpklX-MP8EWlIT0-uc6Ps1XCC4-DBms-b534&_nc_zt=23&_nc_ht=scontent.fhan2-3.fna&_nc_gid=HFitu_FViwr3x_7QNZncqw&oh=00_AfXPh_C7BX0F3bcH-zUpehF9wGCAomrnFeDtzAu8oSl9OA&oe=68D3F4A6">
+          </div>
+        </div>
+        <div class="ly-triangle21"></div>
+      </div>
+      <!--第六屏 - Đại học-->
+      <div class="section">
+        <div class="timeline"></div>
+        <div class="timepoint11"></div>
+        <div class="ly-box81">
+          <div class="ly-txt11">
+            Đại học ❤
+          </div>
+          <div class="ly-txt82" style="top:8%">
+            <p class="wwww1">Hoàng Anh Sun</p>
+            <p class="wwww1">Sunny</p>
+
+          </div>
+          <div class="ly-imgbox81">
+            <img class="ly-img81"
+              src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/487797803_1977680409652169_5392072387927600881_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=_Kyl9N7VFfIQ7kNvwG7avCY&_nc_oc=AdkdUg_kF7g4N2D3D5cmceogs79v1MHmMbG_f4Vk0y3BniwdGRZEBoJWum9RcgvEytg&_nc_zt=23&_nc_ht=scontent.fhan2-3.fna&_nc_gid=ND_Bz73LCoC6Eoxcdm-Ghg&oh=00_AfWo2tJtC0BHG9D-WGjw49BO_R0VGdlVDkSvfNUOpgShDA&oe=68B23ED2"
+              style="">
+          </div>
+        </div>
+        <div class="ly-triangle11"></div>
+
+        <div class="ly-box82">
+          <div class="ly-txt13">
+            Đại học ❤
+          </div>
+          <div class="ly-txt84">
+            <p>Nhạt nhẽo x1000 nhưng vẫn đáng yêu</p>
+            <p>Đi học khỏe thắc mắc nên hay được thầy cô yêu quý</p>
+            <p>Lớp có 2 bóng hồng cả mình nên được bạn bè chiều</p>
+            <p>Cũng thường thường nhưng vẫn là em đặc biệt nhất ❤</p>
+            <p>Đây là hành trình của em từ nhỏ đến lớn, đầy sóng gió nhưng đẹp và đáng nhớ!</p>
+
+            <a href="../../../indexcopy.html" style="    padding: 10px;
+                    background: #E91E63;
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-weight: 800;
+                    font-size: 17px;
+                    border-radius: 6px; margin-top: 20px; display: inline-block;">Xem tiếp ❤ </a>
+          </div>
+        </div>
+        <div class="ly-triangle82"></div>
+      </div>
+
+    </div>
+    <!--动态方块-->
+    <ul class="bg-bubbles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+  </div>
+  <!-- <audio muted src="music/1.mp3" autoplay="autoplay" loop="loop"></audio> -->
+
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/jquery.fullPage.min.js"></script>
+  <!-- <script src="js/auto-play.js"></script> -->
+  <script src="js/memories.js"></script>
+</body>
+
+</html>
