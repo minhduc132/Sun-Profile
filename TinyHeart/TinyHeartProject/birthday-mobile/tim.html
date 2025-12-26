@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <META NAME="Generator" CONTENT="EditPlus">
-    <META NAME="Author" CONTENT="">
-    <META NAME="Keywords" CONTENT="">
-    <META NAME="Description" CONTENT="">
-    <!-- <link rel="stylesheet" href="./style.css"> -->
-
-</head>
-
 <body>
 
     <!DOCTYPE html>
@@ -26,19 +16,18 @@
         <div id="music-banner" class="music-banner loop">
             <div class="content">
                 <h2>
-                    Đọc đến đây chắc em cũng để ý Git rồi nhỉ <br />
-                    Anh cất mấy dòng này ở đây, chắc em cũng không để ý đâu.<br />
-                    Anh không biết em có giống anh không, chỉ là mình đang...<br />
-                    Anh cho em đoán đó, vì em thông minh lắm 🙂<br />
-                    Biết đâu lúc em đọc được thì mọi chuyện cũng đã qua lâu rồi.
+                    Chào mừng em đến với thế giới nhỏ của anh ❤️ <br />
+                    Nơi đây có những khoảnh khắc đẹp nhất mà anh tìm được của em muốn chia sẻ cùng em.<br />
+                    Mỗi bức ảnh là một kỷ niệm, mỗi khoảnh khắc là một câu chuyện.<br />
+                    Hãy để anh dẫn em đi qua từng khoảnh khắc này nhé 💫<br />
                 </h2>
                 <p>
-                    Anh đi đây nhé. Tạm biệt cô gái từng làm anh bớt cô đơn giữa thành phố giá lạnh này.
+                    Nhấn nút bên dưới để bắt đầu hành trình khám phá những kỷ niệm đẹp nhất nhé ✨
                 </p>
 
                 <button onclick="playMusic()" id="playButton">
                     <!-- <span class="icon">▶️</span> -->
-                    <span class="text">Bái bai em</span>
+                    <!-- <span class="text">Bái bai em</span> -->
                 </button>
             </div>
         </div>
@@ -55,6 +44,8 @@
 
                 setTimeout(() => {
                     banner.style.display = 'none';
+                    // Bắt đầu hiển thị ảnh lần lượt sau khi ẩn banner
+                    startImageGallery();
                 }, 500);
             }
         </script>
@@ -844,14 +835,12 @@
         });
 
 
-        // 添加云
         const clouds = addChild(".cloud", "div", 14, "circle", true);
         for (let i = 0; i < clouds.children.length; i++) {
             for (let j = 0; j < clouds.children[i].length;) {
                 clouds.children[i][j].classList.add(`circle-${++j}`);
             }
         }
-        //云动画
 
         let flag = 1;
         setInterval(
@@ -883,19 +872,9 @@
                 flag++;
             }, 2000)
 
-        //———————————————————————————————————————————动画———————————————————————————————————————————————————
-        //运动动画，调用Tween.js
-        //ele: dom | class | id | tag  节点 | 类名 | id名 | 标签名，只支持选择一个节点，class类名以及标签名只能选择页面中第一个
-        //attr: attribute 属性名
-        //value: target value 目标值
-        //time: duration 持续时间
-        //tween: timing function 函数方程
-        //flag: Boolean 判断是按值移动还是按位置移动,默认按位置移动
-        //fn: callback 回调函数
-        //增加返回值: 将内部参数对象返回，可以通过设置返回对象的属性stop为true打断动画
+      
         function requestAnimation(obj) {
-            //—————————————————————————————————————参数设置—————————————————————————————————————————————
-            //默认属性
+           
             const parameter = {
                 ele: null,
                 attr: null,
@@ -906,25 +885,19 @@
                 stop: false,
                 fn: ""
             }
-
-            //合并传入属性
-            Object.assign(parameter, obj); //覆盖重名属性
-
-            //—————————————————————————————————————动画设置—————————————————————————————————————————————
-            //创建运动方程初始参数,方便复用
-            let start = 0; //用于保存初始时间戳
+            Object.assign(parameter, obj); 
+            let start = 0; 
             let target = (typeof parameter.ele === "string" ? document.querySelector(parameter.ele) : parameter.ele), //目标节点
-                attr = parameter.attr, //目标属性
-                beginAttr = parseFloat(getComputedStyle(target)[attr]), //attr起始值
-                value = parameter.value, //运动目标值
-                count = value - beginAttr, //实际运动值
-                time = parameter.time, //运动持续时间,
-                tween = parameter.tween, //运动函数
+                attr = parameter.attr, 
+                beginAttr = parseFloat(getComputedStyle(target)[attr]),
+                value = parameter.value, 
+                count = value - beginAttr, 
+                time = parameter.time,
+                tween = parameter.tween, 
                 flag = parameter.flag,
-                callback = parameter.fn, //回调函数
-                curVal = 0; //运动当前值
+                callback = parameter.fn, 
+                curVal = 0; 
 
-            //判断传入函数是否为数组，多段运动
             (function () {
                 if (attr instanceof Array) {
                     beginAttr = [];
@@ -942,24 +915,15 @@
                 }
             })();
 
-            //运动函数
             function animate(timestamp) {
                 if (parameter.stop) return; //打断
-                //存储初始时间戳
                 if (!start) start = timestamp;
-                //已运动时间
                 let t = timestamp - start;
-                //判断多段运动
                 if (beginAttr instanceof Array) {
-                    // const len = beginAttr.length //存数组长度，复用
 
-                    //多段运动第1类——多属性，同目标，同时间/不同时间
                     if (typeof count === "number") { //同目标
-                        //同时间
                         if (typeof time === "number") {
                             if (t > time) t = time; //判断是否超出目标值
-
-                            //循环attr，分别赋值
                             for (let i in beginAttr) {
                                 if (flag) curVal = Tween[tween](t, beginAttr[i], count, time); //调用Tween，返回当前属性值,此时计算方法为移动到写入位置
                                 else curVal = Tween[tween](t, beginAttr[i], count + beginAttr[i], time); //调用Tween，返回当前属性值，此时计算方法为移动了写入距离
@@ -972,20 +936,15 @@
                             return;
                         }
 
-                        //不同时间
                         if (time instanceof Array) {
-                            //循环time，attr，分别赋值
                             for (let i in beginAttr) {
-                                //错误判断
                                 if (!time[i] && time[i] !== 0) {
                                     throw new Error(
                                         "The input time's length is not equal to attribute's length");
                                 }
 
-                                //判断是否已经完成动画，完成则跳过此次循环
                                 if (parseFloat(getComputedStyle(target)[attr[i]]) === (typeof value === "number" ? value : value[i]))
                                     continue;
-                                // t = timestamp - start; //每次循环初始化t
                                 if (t > time[i]) t = time[i]; //判断是否超出目标值
 
                                 if (flag || attr[i] === "opacity") curVal = Tween[tween](t, beginAttr[i], count, i); //调用Tween，返回当前属性值,此时计算方法为移动到写入位置
@@ -1000,15 +959,12 @@
                         }
                     }
 
-                    //多段运动第2类——多属性，不同目标，同时间/不同时间
                     if (count instanceof Array) {
-                        //同时间
                         if (typeof time === "number") {
 
                             if (t > time) t = time; //判断是否超出目标值
 
                             for (let i in beginAttr) { //循环attr，count，分别赋值
-                                //错误判断
                                 if (!count[i] && count[i] !== 0) {
                                     throw new Error(
                                         "The input value's length is not equal to attribute's length");
@@ -1025,22 +981,18 @@
                             return;
                         }
 
-                        //不同时间
                         if (time instanceof Array) {
                             for (let i in beginAttr) {
-                                //错误判断
                                 if (!time[i] && time[i] !== 0) {
                                     throw new Error(
                                         "The input time's length is not equal to attribute's length");
                                 }
 
-                                //判断是否已经完成动画，完成则跳过此次循环
                                 if (parseFloat(getComputedStyle(target)[attr[i]]) === (typeof value === "number" ? value : value[i]))
                                     continue;
 
                                 if (t > time[i]) t = time[i]; //判断是否超出目标值
 
-                                //错误判断
                                 if (!count[i] && count[i] !== 0) {
                                     throw new Error(
                                         "The input value's length is not equal to attribute's length");
@@ -1060,7 +1012,6 @@
 
                 }
 
-                //单运动模式
                 if (t > time) t = time;
                 if (flag || attr === "opacity") curVal = Tween[tween](t, beginAttr, count, time); //调用Tween，返回当前属性值,此时计算方法为移动到写入位置
                 else curVal = Tween[tween](t, beginAttr[i], count + beginAttr, time); //调用Tween，返回当前属性值，此时计算方法为移动了写入距离
@@ -1075,17 +1026,6 @@
             requestAnimationFrame(animate);
             return parameter; //返回对象，供打断或其他用途
         }
-        //Tween.js
-        /*
-         * t : time 已过时间
-         * b : begin 起始值
-         * c : count 总的运动值
-         * d : duration 持续时间
-         *
-         * 曲线方程
-         *
-         * http://www.cnblogs.com/bluedream2009/archive/2010/06/19/1760909.html
-         * */
 
         let Tween = {
             linear: function (t, b, c, d) { //匀速
@@ -1216,16 +1156,7 @@
             }
         }
 
-
-        //———————————————————————————————————————————DOM操作———————————————————————————————————————————————————
-        // 添加节点
-        // ele: 父节点，支持输入变量，id值，class值，标签值。除变量外，其余值必须为字符串
-        // node: 添加的标签名，值为字符串
-        // n: 节点添加个数
-        // className: 节点绑定的class名，，值为字符串，多个class名用空格隔开
-        // boolean: 是否选中所有目标父节点。可选参数，不输入则判定为false，则只匹配选中的第一个节点
         function addChild(ele, node, n, className, boolean) {
-            //获取节点
             let parent = null;
 
             if (typeof ele !== "string") parent = ele;
@@ -1238,13 +1169,11 @@
                 else parent = document.getElementsByTagNameNS(ele);
             }
 
-            //声明用于存储父节点及子节点的对象 
             const obj = {
                 "parent": parent,
                 "children": []
             };
 
-            //添加节点
             if (boolean) {
                 for (let i = 0; i < parent.length; i++) {
                     obj.children[i] = [];
@@ -1265,15 +1194,348 @@
                 }
             }
 
-            //返回参数，供动画函数调用
             return obj;
         }
 
 
 
-        //   setTimeout(function() {
-        //     window.location.href = "index.html";
-        //   }, 30000); // thời gian chuyển trang sau 10 giây (10000 miliseconds)
+      
+        let currentImageIndex = 0;
+        const imageNumbers = [1,2,15,3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16]; 
+        let imageGalleryInterval;
+        let galleryStarted = false;
+        let galleryContainer = null;
+        let galleryImage = null;
+
+        window.startImageGallery = function() {
+            if (!galleryStarted) {
+                galleryStarted = true;
+                createImageGallery();
+                setTimeout(() => {
+                    console.log('🖼️ Đang hiển thị gallery...');
+                    if (window.showImageGallery) {
+                        window.showImageGallery();
+                    } else {
+                        console.error('❌ showImageGallery chưa được định nghĩa!');
+                        setTimeout(() => {
+                            if (window.showImageGallery) {
+                                window.showImageGallery();
+                            }
+                        }, 500);
+                    }
+                }, 500);
+            } else {
+                console.log('✅ Gallery đã được tạo, chỉ cần hiển thị');
+                if (window.showImageGallery) {
+                    window.showImageGallery();
+                } else {
+                    console.error('❌ showImageGallery không tồn tại!');
+                }
+            }
+        };
+
+        function createImageGallery() {
+            console.log('createImageGallery được gọi!');
+            // Kiểm tra xem đã tạo chưa
+            if (document.getElementById('image-gallery')) {
+                console.log('Gallery đã tồn tại!');
+                return;
+            }
+            
+            // Tạo container cho gallery - hiển thị TRƯỚC trái tim
+            galleryContainer = document.createElement('div');
+            galleryContainer.id = 'image-gallery';
+            galleryContainer.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 80%;
+                max-width: 600px;
+                height: auto;
+                z-index: 99999 !important;
+                display: none;
+                opacity: 0;
+                transition: opacity 0.8s ease-in-out;
+                pointer-events: none;
+            `;
+
+            // Tạo image element - hiển thị trước trái tim
+            galleryImage = document.createElement('img');
+            galleryImage.id = 'gallery-image';
+            galleryImage.style.cssText = `
+                width: 100%;
+                height: auto;
+                max-height: 70vh;
+                object-fit: contain;
+                border-radius: 20px;
+                box-shadow: 0 15px 60px rgba(255, 107, 107, 0.6), 0 0 120px rgba(255, 107, 107, 0.4);
+                opacity: 0;
+                transform: scale(0.5) rotateY(30deg);
+                transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                border: 4px solid rgba(255, 107, 107, 0.5);
+                background: rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(10px);
+            `;
+
+            // Tạo navigation dots
+            const dotsContainer = document.createElement('div');
+            dotsContainer.id = 'gallery-dots';
+            dotsContainer.style.cssText = `
+                position: absolute;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 10px;
+                z-index: 10002;
+                padding: 15px 25px;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 30px;
+                backdrop-filter: blur(10px);
+            `;
+
+            // Tạo dots cho mỗi ảnh
+            imageNumbers.forEach((num, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'gallery-dot';
+                dot.dataset.index = index;
+                dot.style.cssText = `
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background: ${index === 0 ? '#ff6b6b' : 'rgba(255, 255, 255, 0.3)'};
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    box-shadow: ${index === 0 ? '0 0 10px rgba(255, 107, 107, 0.8)' : 'none'};
+                `;
+                dot.addEventListener('click', () => showImage(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            // Tạo close button
+            const closeBtn = document.createElement('div');
+            closeBtn.id = 'gallery-close';
+            closeBtn.innerHTML = '✕';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                font-size: 40px;
+                color: white;
+                cursor: pointer;
+                z-index: 10003;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background: rgba(255, 107, 107, 0.3);
+                transition: all 0.3s ease;
+            `;
+            closeBtn.addEventListener('click', function () {
+    window.hideImageGallery();
+});
+
+            closeBtn.addEventListener('mouseenter', function() {
+                this.style.background = 'rgba(255, 107, 107, 0.6)';
+                this.style.transform = 'rotate(90deg)';
+            });
+            closeBtn.addEventListener('mouseleave', function() {
+                this.style.background = 'rgba(255, 107, 107, 0.3)';
+                this.style.transform = 'rotate(0deg)';
+            });
+
+            galleryContainer.appendChild(galleryImage);
+            galleryContainer.appendChild(dotsContainer);
+            galleryContainer.appendChild(closeBtn);
+            document.body.appendChild(galleryContainer);
+
+            // Hàm hiển thị ảnh
+            window.showImage = function(index) {
+                if (index < 0) index = imageNumbers.length - 1;
+                if (index >= imageNumbers.length) index = 0;
+                
+                currentImageIndex = index;
+                const imageNum = imageNumbers[index];
+                
+                console.log(`📷 Đang hiển thị ảnh n${imageNum}.jpg (index ${index})`);
+                
+                // Fade out trước
+                if (galleryImage) {
+                    galleryImage.style.opacity = '0';
+                    galleryImage.style.transform = 'scale(0.9)';
+                }
+                
+                setTimeout(() => {
+                    const imagePath = `./img/n${imageNum}.jpg`;
+                    console.log('📂 Đang load ảnh:', imagePath);
+                    if (!galleryImage) {
+                        console.error('❌ galleryImage không tồn tại!');
+                        return;
+                    }
+                    galleryImage.src = imagePath;
+                    
+                    // Xử lý lỗi khi load ảnh
+                    galleryImage.onerror = function() {
+                        console.error('Không thể load ảnh:', imagePath);
+                        // Thử đường dẫn khác
+                        this.src = `img/n${imageNum}.jpg`;
+                        this.onerror = function() {
+                            this.src = `../img/n${imageNum}.jpg`;
+                            this.onerror = null;
+                        };
+                    };
+                    
+                    // Đợi ảnh load xong
+                    galleryImage.onload = function() {
+                        console.log('✅ Đã load ảnh thành công:', this.src);
+                        // Fade in với animation đẹp
+                        setTimeout(() => {
+                            galleryImage.style.opacity = '1';
+                            galleryImage.style.transform = 'scale(1) rotateY(0deg)';
+                        }, 100);
+                    };
+                    
+                    // Fallback nếu ảnh đã được cache
+                    if (galleryImage.complete) {
+                        galleryImage.onload();
+                    }
+                }, 300);
+
+                // Update dots
+                document.querySelectorAll('.gallery-dot').forEach((dot, i) => {
+                    dot.style.background = i === index ? '#ff6b6b' : 'rgba(255, 255, 255, 0.3)';
+                    dot.style.transform = i === index ? 'scale(1.3)' : 'scale(1)';
+                    dot.style.boxShadow = i === index ? '0 0 10px rgba(255, 107, 107, 0.8)' : 'none';
+                });
+            };
+
+            // Hàm ẩn gallery
+            window.hideImageGallery = function() {
+                galleryContainer.style.opacity = '0';
+                setTimeout(() => {
+                    galleryContainer.style.display = 'none';
+                    if (imageGalleryInterval) {
+                        clearInterval(imageGalleryInterval);
+                        imageGalleryInterval = null;
+                    }
+                }, 1000);
+            };
+
+            // Hàm hiển thị gallery - ảnh hiện lần lượt TRƯỚC trái tim
+            window.showImageGallery = function() {
+                console.log('🎨 showImageGallery được gọi!');
+                if (!galleryContainer) {
+                    console.error('❌ galleryContainer không tồn tại!');
+                    return;
+                }
+                
+                console.log('📱 Đang hiển thị gallery container...');
+                galleryContainer.style.display = 'block';
+                galleryContainer.style.zIndex = '99999';
+                galleryContainer.style.opacity = '0';
+                galleryContainer.style.pointerEvents = 'auto';
+                
+                // Thêm hiệu ứng fade in với particles
+                setTimeout(() => {
+                    console.log('✨ Fade in gallery...');
+                    galleryContainer.style.opacity = '1';
+                    
+                    // Thêm hiệu ứng sparkle khi gallery xuất hiện
+                    for (let i = 0; i < 20; i++) {
+                        setTimeout(() => {
+                            const sparkle = document.createElement('div');
+                            sparkle.style.cssText = `
+                                position: absolute;
+                                width: 4px;
+                                height: 4px;
+                                background: #ff6b6b;
+                                border-radius: 50%;
+                                left: ${Math.random() * 100}%;
+                                top: ${Math.random() * 100}%;
+                                box-shadow: 0 0 10px #ff6b6b;
+                                animation: sparkleFade 1.5s ease-out forwards;
+                                z-index: 2001;
+                            `;
+                            galleryContainer.appendChild(sparkle);
+                            setTimeout(() => sparkle.remove(), 1500);
+                        }, i * 50);
+                    }
+                    
+                    // Thêm CSS animation cho sparkle
+                    if (!document.getElementById('sparkle-style')) {
+                        const style = document.createElement('style');
+                        style.id = 'sparkle-style';
+                        style.textContent = `
+                            @keyframes sparkleFade {
+                                0% {
+                                    opacity: 1;
+                                    transform: scale(1) translateY(0);
+                                }
+                                100% {
+                                    opacity: 0;
+                                    transform: scale(0) translateY(-50px);
+                                }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                    
+                    // Bắt đầu hiển thị ảnh đầu tiên
+                    currentImageIndex = 0;
+                    console.log('🖼️ Hiển thị ảnh đầu tiên (index 0)...');
+                    showImage(0);
+                    
+                    // Auto play - đổi ảnh mỗi 3 giây
+                    if (imageGalleryInterval) clearInterval(imageGalleryInterval);
+                    imageGalleryInterval = setInterval(() => {
+                        currentImageIndex = (currentImageIndex + 1) % imageNumbers.length;
+                        console.log(`🔄 Chuyển sang ảnh ${currentImageIndex + 1}/${imageNumbers.length}`);
+                        showImage(currentImageIndex);
+                    }, 3000); // Đổi ảnh mỗi 3 giây
+                }, 100);
+            };
+            
+            // startImageGallery đã được định nghĩa ở trên
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (galleryContainer.style.display === 'block' || galleryContainer.style.display === 'flex') {
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                        showImage(currentImageIndex + 1);
+                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                        showImage(currentImageIndex - 1);
+                    } else if (e.key === 'Escape') {
+                        hideImageGallery();
+                    }
+                }
+            });
+
+            // Touch swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            galleryContainer.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            galleryContainer.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    showImage(currentImageIndex + 1);
+                }
+                if (touchEndX > touchStartX + 50) {
+                    showImage(currentImageIndex - 1);
+                }
+            }
+        }
+
+        // KHÔNG tự động hiển thị gallery nữa - chỉ hiển thị sau khi nhấn nút
+        // Gallery sẽ được khởi tạo khi nhấn nút thông qua hàm startImageGallery()
 
     </script>
 
@@ -1310,12 +1572,6 @@
     <div id='snowflakeContainer'>
         <p class='snowflake'>❄</p>
     </div>
-    <!-- <script style='text/javascript'>
-        //<![CDATA[
-        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame; var transforms = ["transform", "msTransform", "webkitTransform", "mozTransform", "oTransform"]; var transformProperty = getSupportedPropertyName(transforms); var snowflakes = []; var browserWidth; var browserHeight; var numberOfSnowflakes = 50; var resetPosition = false; function setup() { window.addEventListener("DOMContentLoaded", generateSnowflakes, false); window.addEventListener("resize", setResetFlag, false) } setup(); function getSupportedPropertyName(b) { for (var a = 0; a < b.length; a++) { if (typeof document.body.style[b[a]] != "undefined") { return b[a] } } return null } function Snowflake(b, a, d, e, c) { this.element = b; this.radius = a; this.speed = d; this.xPos = e; this.yPos = c; this.counter = 0; this.sign = Math.random() < 0.5 ? 1 : -1; this.element.style.opacity = 0.5 + Math.random(); this.element.style.fontSize = 4 + Math.random() * 30 + "px" } Snowflake.prototype.update = function () { this.counter += this.speed / 5000; this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40; this.yPos += Math.sin(this.counter) / 40 + this.speed / 30; setTranslate3DTransform(this.element, Math.round(this.xPos), Math.round(this.yPos)); if (this.yPos > browserHeight) { this.yPos = -50 } }; function setTranslate3DTransform(a, c, b) { var d = "translate3d(" + c + "px, " + b + "px, 0)"; a.style[transformProperty] = d } function generateSnowflakes() { var b = document.querySelector(".snowflake"); var h = b.parentNode; browserWidth = document.documentElement.clientWidth; browserHeight = document.documentElement.clientHeight; for (var d = 0; d < numberOfSnowflakes; d++) { var j = b.cloneNode(true); h.appendChild(j); var e = getPosition(50, browserWidth); var a = getPosition(50, browserHeight); var c = 5 + Math.random() * 40; var g = 4 + Math.random() * 10; var f = new Snowflake(j, g, c, e, a); snowflakes.push(f) } h.removeChild(b); moveSnowflakes() } function moveSnowflakes() { for (var b = 0; b < snowflakes.length; b++) { var a = snowflakes[b]; a.update() } if (resetPosition) { browserWidth = document.documentElement.clientWidth; browserHeight = document.documentElement.clientHeight; for (var b = 0; b < snowflakes.length; b++) { var a = snowflakes[b]; a.xPos = getPosition(50, browserWidth); a.yPos = getPosition(50, browserHeight) } resetPosition = false } requestAnimationFrame(moveSnowflakes) } function getPosition(b, a) { return Math.round(-1 * b + Math.random() * (a + 2 * b)) } function setResetFlag(a) { resetPosition = true };
-        //]]>
-    </script> -->
-
 </body>
 
 </html>
